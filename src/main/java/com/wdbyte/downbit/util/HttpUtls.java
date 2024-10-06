@@ -44,9 +44,9 @@ public class HttpUtls {
         HttpURLConnection httpUrlConnection = getHttpUrlConnection(url);
         LogUtils.debug("此线程下载内容区间 {}-{}", start, end);
         if (end != null) {
-            httpUrlConnection.setRequestProperty("RANGE", "bytes=" + start + "-" + end);
+            httpUrlConnection.setRequestProperty("Range", "bytes=" + start + "-" + end);
         } else {
-            httpUrlConnection.setRequestProperty("RANGE", "bytes=" + start + "-");
+            httpUrlConnection.setRequestProperty("Range", "bytes=" + start + "-");
         }
         Map<String, List<String>> headerFields = httpUrlConnection.getHeaderFields();
         for (String s : headerFields.keySet()) {
@@ -64,6 +64,7 @@ public class HttpUtls {
      */
     public static long getHttpFileContentLength(String url) throws IOException {
         HttpURLConnection httpUrlConnection = getHttpUrlConnection(url);
+        httpUrlConnection.setRequestMethod("HEAD");
         int contentLength = httpUrlConnection.getContentLength();
         httpUrlConnection.disconnect();
         return contentLength;

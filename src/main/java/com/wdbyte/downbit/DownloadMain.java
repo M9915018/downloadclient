@@ -34,7 +34,7 @@ import com.wdbyte.downbit.util.ThunderUtils;
 public class DownloadMain {
 
     // 下载线程数量
-    public static int DOWNLOAD_THREAD_NUM = 2;
+    public static int DOWNLOAD_THREAD_NUM = 10;
     // 下载线程池
     private static ExecutorService executor = Executors.newFixedThreadPool( DOWNLOAD_THREAD_NUM + 1);
     // 临时文件后缀
